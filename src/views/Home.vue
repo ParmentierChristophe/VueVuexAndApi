@@ -1,7 +1,12 @@
 <template>
   <div class="home">
     <h1 class="title">Pays d'europe</h1>
-    <home-pays-preview :pays="pays"></home-pays-preview>
+    <div v-if="loading">
+      loading...
+    </div>
+    <div v-else>
+      <home-pays-preview :pays="pays"></home-pays-preview>
+    </div>
   </div>
 </template>
 
@@ -21,7 +26,8 @@
 
     computed: {
       ...mapState([
-        'pays'
+        'pays',
+        'loading'
       ]),
       ...mapActions([
         'fetchPays'

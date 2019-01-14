@@ -8,12 +8,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    pays: []
+    pays: [],
+    loading: true
   },
 
   mutations: {
     searchPays(currentState, pays) {
       currentState.pays = pays;
+    },
+    changeLoadingState(currentState, loading) {
+      currentState.loading = loading;
     }
   },
 
@@ -27,6 +31,16 @@ export default new Vuex.Store({
     }) {
       const pays = await getPays();
       commit("searchPays", pays);
+      commit("changeLoadingState", false);
     }
+
+    // fetchPays({
+    //   commit
+    // }) {
+    //   return getPays()
+    //     .then((pays) => {
+    //       commit("searchPays", pays);
+    //     });
+    // }
   }
 })
